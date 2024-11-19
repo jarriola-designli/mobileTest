@@ -3,14 +3,19 @@ import {NavigationContainer} from '@react-navigation/native';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider} from '@ui-kitten/components';
 import MainNavigator from './src/navigation';
-// todo: add loading and error modals
+import {LoadingModal, ErrorModal} from './src/Components';
+import {useNetworkingStore} from './src/store';
+// todo: add error modal
 const App = () => {
+  const loading = useNetworkingStore(state => state.loading);
+  const error = useNetworkingStore(state => state.errorMsgAndShowup.showError);
   return (
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <NavigationContainer>
+    <NavigationContainer>
+      <ApplicationProvider {...eva} theme={eva.light}>
         <MainNavigator />
-      </NavigationContainer>
-    </ApplicationProvider>
+        <LoadingModal visible={loading} />
+      </ApplicationProvider>
+    </NavigationContainer>
   );
 };
 

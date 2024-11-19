@@ -12,6 +12,8 @@ const useProducts = () => {
 
   const getProducts = async (start: number = 0, end: number = 10) => {
     setLoading(true);
+    // add 1 second delay to show the loading spinner... absolutely unnecessary but I added it just to make it look cool
+    await new Promise(resolve => setTimeout(resolve, 500));
     try {
       const networkStatus = await NetInfo.fetch();
       const isConnected = networkStatus.isConnected;
@@ -41,6 +43,8 @@ const useProducts = () => {
 
   const getSingleProduct = async (id: number) => {
     setLoading(true);
+    // add 1 second delay to show the loading spinner... absolutely unnecessary but I added it just to make it look cool
+    await new Promise(resolve => setTimeout(resolve, 500));
     const cacheKey = `product_${id}`;
     try {
       const networkStatus = await NetInfo.fetch();
